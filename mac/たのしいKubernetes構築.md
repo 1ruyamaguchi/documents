@@ -127,6 +127,16 @@ NAME                  STATUS     ROLES                  AGE   VERSION
 nobuhiro-virtualbox   NotReady   control-plane,master   43m   v1.22.4
 ```
 
+### CNIプラグインインストール
+上で確認できるように、ここまでの作業ではNodeのステータスが`NotReady`になっている。  
+このままではKubernetesのNodeとして機能しないため、CNIプラグインをKubernetesにインストールする。  
+ここではWeavenetを選択。ほかにも色々種類があるらしい。  
+cf. https://www.weave.works/docs/net/latest/kubernetes/kube-addon/#-installation  
+上を参考に、以下を叩けばインストールが進む：  
+```
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```
+
 ### コケた箇所
 ここまでで、以下の2点でコケた。いずれも`kubeadm init`をたたいた時に怒られた。
 - 仮想マシンのCoreが1つだった  
