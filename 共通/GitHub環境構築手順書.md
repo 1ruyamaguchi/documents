@@ -4,12 +4,18 @@ https://github.com/1ruyamaguchi
 
 ### Gitの初期設定
 ターミナルで以下のコマンドを叩く：  
-// ユーザ名の設定  
+ユーザ名の設定  
+```
 git config --global user.name \${userName}  
-// メールアドレスの設定  
+```
+メールアドレスの設定  
+```
 git config --global user.email \${email}  
-// 登録内容の確認  
+```
+登録内容の確認  
+```
 git config --list
+```
 
 ### GitHubでアカウントの作成
 https://github.com  
