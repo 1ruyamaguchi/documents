@@ -13,3 +13,4 @@ https://jdk.java.net
 インストールしたもの一覧：  
 - Java Extension Pack
 - Spring Boot Extension Pack
+- Lombok Annotations Support for VS Code
