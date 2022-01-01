@@ -7,7 +7,8 @@ VSCodeを使ってJava開発を行うための環境構築
 https://jdk.java.net
 - .tarファイルを展開、jdk-***ファイルを  
 /ライブラリ/Java/JavaVirtualMachines  
-にコピー
+にコピー  
+  - settings.jsonにパスを通す。
 
 ### VSCodeの拡張機能インストール
 インストールしたもの一覧：  
