@@ -27,7 +27,7 @@
   - Spring Web
   - Validation
   - Thymeleaf
-  - Lombokå
+  - Lombok
 ### パッケージ構成（自動生成される部分などは省略）
 ```
 projectName
