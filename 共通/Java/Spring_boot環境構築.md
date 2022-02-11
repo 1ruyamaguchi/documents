@@ -63,9 +63,91 @@ projectName
 　　　┣initial_data.sql #イニシャルデータ用のSQL文
 　　　┗sample_data.sql #サンプルデータ用のSQL文
 ```
-test/java/com/example/projectName配下はsrc/java/com/example/projectName配下と同一の構成にする。
+`test/java/com/example/projectName`配下は`src/java/com/example/projectName`配下と同一の構成にする。
 
 ### DB関連の設定
 #### ProjectNameApplication.javaの追加設定
+ProjectNameApplication.javaを以下のように変更：
+```
+package com.example.projectName;
+
+import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
+
+@SpringBootApplication
+@MapperScan(basePackages = "com.example.projectName.mapper")
+public class OnepasswordApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ProjectNameApplication.class, args);
+	}
+
+	// MyBatisの設定
+	@Bean
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource);
+		// コンフィグファイルの読み込み
+		sessionFactory.setConfigLocation(new ClassPathResource("/mybatis-config.xml"));
+
+		return sessionFactory.getObject();
+	}
+}
+```
 #### pom.xmlの追加設定
-#### mybatisの追加設定
+以下を追記：
+```
+<dependency>
+    <groupId>org.mariadb.jdbc</groupId>
+    <artifactId>mariadb-java-client</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.0</version>
+</dependency>
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>1.3.2</version>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+```
+#### application.propertiesの追加設定
+以下を追記：
+```
+#MariaDBのドライバ設定
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+#接続用URL
+spring.datasource.url=jdbc:mariadb://localhost/DBName
+#ユーザ名
+spring.datasource.username=root
+#パスワード
+spring.datasource.password=
+```
+#### mybatis-config.xmlの追加設定
+`projectName/src/main/resources`配下に`mybatis-config.xml`を以下の内容で作成する：
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+</configuration>
+```
