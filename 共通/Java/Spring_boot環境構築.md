@@ -21,23 +21,51 @@
   - Spring Initializr Java Support
   - Start git-bash
   - Test Runner for Java
-  - Visual Studio IntelliCode
-
+  - Visual Studio IntelliCodeß
 ## プロジェクト構成
-- 依存関係
+###  依存関係
   - Spring Web
   - Validation
   - Thymeleaf
-  - Lombok
-- パッケージ構成（自動生成される部分などは省略）
+  - Lombokå
+### パッケージ構成（自動生成される部分などは省略）
 ```
-${projectName}
-┗src
-　┣main
-　　┣java/com/example/${projectName}
-　　┗resources
-　┗test
+projectName
+　┣src
+　┃　┣main
+　┃　┃　┣java/com/example/projectName
+　┃　┃　┃　┣controller
+　┃　┃　┃　┃　┗XXXController.java
+　┃　┃　┃　┣dao
+　┃　┃　┃　┃　┗XXXDao.java #各テーブルに対応したdao
+　┃　┃　┃　┣dto
+　┃　┃　┃　┃　┗XXXDto.java
+　┃　┃　┃　┣entity
+　┃　┃　┃　┃　┗XXXEntity.java #各テーブルのカラムに対応したentity
+　┃　┃　┃　┣logic
+　┃　┃　┃　┃　┣impl
+　┃　┃　┃　┃　┃　┗XXXLogicImpl.java
+　┃　┃　┃　┃　┗XXXLogic.java
+　┃　┃　┃　┣mapper
+　┃　┃　┃　┃　┣XXXMapper.java
+　┃　┃　┃　┃　┗XXXMapper.xml
+　┃　┃　┃　┣service
+　┃　┃　┃　┃　┣impl
+　┃　┃　┃　┃　┃　┗XXXImpl.java
+　┃　┃　┃　┃　┗XXXService.java
+　┃　┃　┃　┗ProjectNameApplication.java
+　┃　┃　┗resources
+　┃　┃　　　┗XXX #ページクラス.htmlを格納
+　┃　┗test
+　┃　　　┗java/com/example/projectName
+　┗sqls
+　　　┣create_table.sql #テーブル作成用のSQL文
+　　　┣initial_data.sql #イニシャルデータ用のSQL文
+　　　┗sample_data.sql #サンプルデータ用のSQL文
+```
+test/java/com/example/projectName配下はsrc/java/com/example/projectName配下と同一の構成にする。
 
-sqls
-┗create_table.sql
-```
+### DB関連の設定
+#### ProjectNameApplication.javaの追加設定
+#### pom.xmlの追加設定
+#### mybatisの追加設定
