@@ -66,41 +66,7 @@ projectName
 `test/java/com/example/projectName`配下は`src/java/com/example/projectName`配下と同一の構成にする。
 
 ### DB関連の設定
-#### ProjectNameApplication.javaの追加設定
-ProjectNameApplication.javaを以下のように変更：
-```
-package com.example.projectName;
 
-import javax.sql.DataSource;
-
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
-
-@SpringBootApplication
-@MapperScan(basePackages = "com.example.projectName.mapper")
-public class OnepasswordApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ProjectNameApplication.class, args);
-	}
-
-	// MyBatisの設定
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
-		// コンフィグファイルの読み込み
-		sessionFactory.setConfigLocation(new ClassPathResource("/mybatis-config.xml"));
-
-		return sessionFactory.getObject();
-	}
-}
-```
 #### pom.xmlの追加設定
 以下を追記：
 ```
@@ -150,4 +116,39 @@ spring.datasource.password=
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
 </configuration>
+```
+#### ProjectNameApplication.javaの追加設定
+ProjectNameApplication.javaを以下のように変更：
+```
+package com.example.projectName;
+
+import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
+
+@SpringBootApplication
+@MapperScan(basePackages = "com.example.projectName.mapper")
+public class ProjectNameApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ProjectNameApplication.class, args);
+	}
+
+	// MyBatisの設定
+	@Bean
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource);
+		// コンフィグファイルの読み込み
+		sessionFactory.setConfigLocation(new ClassPathResource("/mybatis-config.xml"));
+
+		return sessionFactory.getObject();
+	}
+}
 ```
