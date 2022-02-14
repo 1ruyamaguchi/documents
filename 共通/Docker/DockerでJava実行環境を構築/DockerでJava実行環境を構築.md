@@ -1,6 +1,6 @@
 # DockerでJava実行環境を構築
 ## 目標
-公式のopenjdkイメージを使ってJavaの実行環境をDockerで用意する
+公式のopenjdkイメージを使ってJavaの実行環境をDockerで用意する。
 
 ## 使用環境
 - Java: openjdk-17
