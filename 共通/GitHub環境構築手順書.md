@@ -1,5 +1,5 @@
 ## GitHub環境構築手順書
-https://github.com/1ruyamaguchi
+https://github.com/1ruyamaguchi  
 あらかじめコマンドラインでgitコマンドが叩けるようにしておく。（gitのインストールなど）
 
 ### Gitの初期設定
