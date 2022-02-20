@@ -78,7 +78,7 @@ CREATE TABLE user(
 ```
 `ユーザ`テーブルを作成する。
 ### アプリケーションのソースファイル
-`java/dockertest`配下を参照。ただし、`application.properties`について、DBの接続用URLを以下のように記述する：
+`java/dockertest`配下を参照。今回はuserテーブルにinsertするための入力画面、テーブルのデータを全件取得して出力する画面およびAPIを用意した。基本的にはいつも通りの作成手順で問題ないが、`application.properties`についてはDBの接続用URLを以下のように記述する：
 ```
 spring.datasource.url=jdbc:mariadb://db-container:3306/docker_java_db_test
 ```
@@ -119,3 +119,4 @@ cd higuchi/server
 ```
 java -jar target/javadbtest-0.0.1-SNAPSHOT.jar
 ```
+ブラウザで`http://localhost:8080/docker-welcome`にアクセスすればアプリケーションの動作確認ができる。
