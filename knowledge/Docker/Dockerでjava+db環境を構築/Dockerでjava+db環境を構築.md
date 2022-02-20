@@ -1,7 +1,7 @@
 # Dockerでjava+db環境を構築
 
 ## 目標
-DockerでJavaアプリケーション実行環境およびDBサーバを立てて連携させる
+DockerでJavaアプリケーション実行環境およびDBサーバを立てて連携させる。
 
 ## 使用環境
 - Java: openjdk-17
