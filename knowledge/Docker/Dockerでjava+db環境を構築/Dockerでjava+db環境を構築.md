@@ -14,11 +14,11 @@ java-mariadb-test
 　│　├─db
 　│　│　├─sqls
 　│　│　│　└─create_table.sql
-　│　│　└Dockerfile
-　│　└java
+　│　│　└─Dockerfile
+　│　└─java
 　│　 　├─dockertest
 　│　 　│　└─アプリケーションソースファイル（省略）
-　│　 　└Dockerfile
+　│　 　└─Dockerfile
 　└─docker-compose.yml
 ```
 ### docker-compose.yml
