@@ -76,7 +76,7 @@ CREATE TABLE user(
     detail text
 );
 ```
-`ユーザ`テーブルを作成する。
+`user`テーブルを作成する。
 ### アプリケーションのソースファイル
 `java/dockertest`配下を参照。今回はuserテーブルにinsertするための入力画面、テーブルのデータを全件取得して出力する画面およびAPIを用意した。基本的にはいつも通りの作成手順で問題ないが、`application.properties`についてはDBの接続用URLを以下のように記述する：
 ```
