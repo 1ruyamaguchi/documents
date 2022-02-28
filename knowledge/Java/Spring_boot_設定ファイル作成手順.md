@@ -31,37 +31,37 @@
 ### パッケージ構成（自動生成される部分などは省略）
 ```
 projectName
-　┣src
-　┃　┣main
-　┃　┃　┣java/com/example/projectName
-　┃　┃　┃　┣controller
-　┃　┃　┃　┃　┗XXXController.java
-　┃　┃　┃　┣dao
-　┃　┃　┃　┃　┗XXXDao.java #各テーブルに対応したdao
-　┃　┃　┃　┣dto
-　┃　┃　┃　┃　┗XXXDto.java
-　┃　┃　┃　┣entity
-　┃　┃　┃　┃　┗XXXEntity.java #各テーブルのカラムに対応したentity
-　┃　┃　┃　┣logic
-　┃　┃　┃　┃　┣impl
-　┃　┃　┃　┃　┃　┗XXXLogicImpl.java
-　┃　┃　┃　┃　┗XXXLogic.java
-　┃　┃　┃　┣mapper
-　┃　┃　┃　┃　┣XXXMapper.java
-　┃　┃　┃　┃　┗XXXMapper.xml
-　┃　┃　┃　┣service
-　┃　┃　┃　┃　┣impl
-　┃　┃　┃　┃　┃　┗XXXImpl.java
-　┃　┃　┃　┃　┗XXXService.java
-　┃　┃　┃　┗ProjectNameApplication.java
-　┃　┃　┗resources
-　┃　┃　　　┗XXX #ページクラス.htmlを格納
-　┃　┗test
-　┃　　　┗java/com/example/projectName
-　┗sqls
-　　　┣create_table.sql #テーブル作成用のSQL文
-　　　┣initial_data.sql #イニシャルデータ用のSQL文
-　　　┗sample_data.sql #サンプルデータ用のSQL文
+　├─src
+　│　├─main
+　│　│　├─java/com/example/projectName
+　│　│　│　├─controller
+　│　│　│　│　└─XXXController.java
+　│　│　│　├─dao
+　│　│　│　│　└─XXXDao.java #各テーブルに対応したdao
+　│　│　│　├─dto
+　│　│　│　│　└─XXXDto.java
+　│　│　│　├─entity
+　│　│　│　│　└─XXXEntity.java #各テーブルのカラムに対応したentity
+　│　│　│　├─logic
+　│　│　│　│　├─impl
+　│　│　│　│　│　└─XXXLogicImpl.java
+　│　│　│　│　└─XXXLogic.java
+　│　│　│　├─mapper
+　│　│　│　│　├─XXXMapper.java
+　│　│　│　│　└─XXXMapper.xml
+　│　│　│　├─service
+　│　│　│　│　├─impl
+　│　│　│　│　│　└─XXXImpl.java
+　│　│　│　│　└─XXXService.java
+　│　│　│　└─ProjectNameApplication.java
+　│　│　└─resources
+　│　│　　　└─XXX #ページクラス.htmlを格納
+　│　└─test
+　│　　　└─java/com/example/projectName
+　└─sqls
+　　　├─create_table.sql #テーブル作成用のSQL文
+　　　├─initial_data.sql #イニシャルデータ用のSQL文
+　　　└─sample_data.sql #サンプルデータ用のSQL文
 ```
 `test/java/com/example/projectName`配下は`src/java/com/example/projectName`配下と同一の構成にする。
 
