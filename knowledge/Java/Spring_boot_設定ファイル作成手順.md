@@ -37,6 +37,8 @@ projectName
 　│　│　│　├─controller
 　│　│　│　│　└─XXXController.java
 　│　│　│　├─dao
+　│　│　│　│　├─impl
+　│　│　│　│　│　└─XXXDaoImpl.java 
 　│　│　│　│　└─XXXDao.java #各テーブルに対応したdao
 　│　│　│　├─dto
 　│　│　│　│　└─XXXDto.java
