@@ -43,7 +43,7 @@ projectName
 　│　│　│　├─dto
 　│　│　│　│　└─XXXDto.java
 　│　│　│　├─entity
-　│　│　│　│　└─XXXEntity.java #各テーブルのカラムに対応したentity
+　│　│　│　│　└─XXXEntity.java #各テーブルに対応したentity
 　│　│　│　├─logic
 　│　│　│　│　├─impl
 　│　│　│　│　│　└─XXXLogicImpl.java
