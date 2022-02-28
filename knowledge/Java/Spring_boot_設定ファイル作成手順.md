@@ -53,7 +53,7 @@ projectName
 　│　│　│　│　└─XXXMapper.xml
 　│　│　│　├─service
 　│　│　│　│　├─impl
-　│　│　│　│　│　└─XXXImpl.java
+　│　│　│　│　│　└─XXXServiceImpl.java
 　│　│　│　│　└─XXXService.java
 　│　│　│　└─ProjectNameApplication.java
 　│　│　└─resources
