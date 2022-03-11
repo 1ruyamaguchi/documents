@@ -8,7 +8,8 @@ https://jdk.java.net
 - .tarファイルを展開、jdk-***ファイルを  
 /ライブラリ/Java/JavaVirtualMachines  
 にコピー  
-  - settings.jsonにパスを通す。
+  - settings.jsonにパスを通す。  
+  `/usr/libexec/java_home`で出てきたパスを使って`"java.home": "path/to/jdk"`を記載する
 
 ### VSCodeの拡張機能インストール
 インストールしたもの一覧：  
