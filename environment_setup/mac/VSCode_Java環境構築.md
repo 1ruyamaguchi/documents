@@ -9,7 +9,7 @@ https://jdk.java.net
 /ライブラリ/Java/JavaVirtualMachines  
 にコピー  
   - settings.jsonにパスを通す。  
-  `/usr/libexec/java_home`で出てきたパスを使って`"java.home": "path/to/jdk"`を記載する
+  `/usr/libexec/java_home`で出てきたパスを使って`"java.home": "path/to/jdk"`を記載する（/Contents/Homeは不要？）
 
 ### VSCodeの拡張機能インストール
 インストールしたもの一覧：  
