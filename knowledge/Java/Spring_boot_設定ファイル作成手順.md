@@ -57,7 +57,8 @@ projectName
 　│　│　│　│　└─XXXService.java
 　│　│　│　└─ProjectNameApplication.java
 　│　│　└─resources
-　│　│　　　└─XXX #ページクラス.htmlを格納
+　│　│　　 └─templates
+　│　│　　　　└─XXX #ページクラス.htmlを格納
 　│　└─test
 　│　　　└─java/com/example/projectName
 　└─sqls
