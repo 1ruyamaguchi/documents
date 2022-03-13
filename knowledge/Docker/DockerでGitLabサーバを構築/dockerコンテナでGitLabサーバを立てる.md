@@ -22,7 +22,7 @@ vi ~/.vimrc
 
 #### ウィンドウが拡大できない問題
 仮想マシンのウィンドウを拡大しても表示領域が大きくならないので以下の手順を踏む必要あり。
-- 上部「Devices」から「install Guest Additions CD image...」を選択
+- 上部「Devices」から「insert Guest Additions CD image...」を選択
 - インストール完了後再起動
 
 
