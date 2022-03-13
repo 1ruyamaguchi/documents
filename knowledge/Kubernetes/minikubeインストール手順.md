@@ -31,7 +31,6 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 kubectlがインストールされていること、およびバージョンを確認する
 ```
 kubectl version --client  
-Client Version: version.Info...(中略)
 ```
 
 ## dockerのインストール
