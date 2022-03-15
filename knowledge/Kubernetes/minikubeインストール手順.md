@@ -81,7 +81,7 @@ sudo usermod -aG docker ${userName}
 ```
 グループが存在しない場合は`sudo groupadd docker`で作成する。
 
-マシンの再起動後、`sudo systemctl restart docker`でdockerを再起度王する。
+マシンの再起動後、`sudo systemctl restart docker`でdockerを再起動する。
 
 ## minikubeのインストール
 
