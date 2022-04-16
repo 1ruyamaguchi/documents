@@ -19,10 +19,16 @@ postfixをインストール（メール関係が不要ならスキップして�
 sudo apt-get install -y postfix
 ```
 
-GitLabのパッケージリポジトリを追加、インストール
+GitLabのパッケージリポジトリを追加、依存関係のインストール
 ```
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
 ```
+
+GitLabインストール
+```
+sudo apt install gitlab-ee
+```
+
 
 DNSの設定をしないのであれば`http://localhost:80`でGitLabにアクセスできる。ただしログイン画面が表示されるまでに時間がかかる。Error: 502が出るようであればしばらく待ってみるとよい。  
 root用のログインパスワードは`/etc/gitlab/initial_root_password`に格納されている。24時間経つとファイルが消えるので早めにパスワードを変更する必要がある。
