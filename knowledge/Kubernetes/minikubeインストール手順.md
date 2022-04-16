@@ -31,7 +31,6 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 kubectlがインストールされていること、およびバージョンを確認する
 ```
 kubectl version --client  
-Client Version: version.Info...(中略)
 ```
 
 ## dockerのインストール
@@ -82,19 +81,23 @@ sudo usermod -aG docker ${userName}
 ```
 グループが存在しない場合は`sudo groupadd docker`で作成する。
 
-マシンの再起動後、`sudo systemctl restart docker`でdockerを再起度王する。
+マシンの再起動後、`sudo systemctl restart docker`でdockerを再起動する。
 
 ## minikubeのインストール
 
 minikubeバイナリのダウンロード
 ```
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+```
+```
 chmod +x minikube
 ```
 
 minikubeバイナリを実行可能にする
 ```
 sudo mkdir -p /usr/local/bin/
+```
+```
 sudo install minikube /usr/local/bin/
 ```
 

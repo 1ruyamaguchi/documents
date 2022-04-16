@@ -31,3 +31,8 @@ network
         addresses: [8.8.8.8]
 ```
 `sudo netplay try`で設定内容を適用できる。`ip addr`で確認しよう。
+
+### ウィンドウが拡大できない問題
+仮想マシンのウィンドウを拡大しても表示領域が大きくならないので以下の手順を踏む必要あり。
+- 上部「Devices」から「install Guest Additions CD image...」を選択
+- インストール完了後再起動
