@@ -102,13 +102,12 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         external_url "http://${IP_address}:80"
     ports:
-      - '80:80'
-      - '8022:22'
-      - '4567:4567'
+    - '80:80'
+    - '2022:22'
     volumes:
-      - '/srv/gitlab/config:/etc/gitlab'
-      - '/srv/gitlab/logs:/var/log/gitlab'
-      - '/srv/gitlab/data:/var/opt/gitlab'
+    - '/srv/gitlab/config:/etc/gitlab'
+    - '/srv/gitlab/logs:/var/log/gitlab'
+    - '/srv/gitlab/data:/var/opt/gitlab'
 ```
 `docker-compose up -d`でコンテナを起動する。アクセスできるようになるまでに数分ラグがある。Error: 502であれば根気良く待つこと。しばらく待って`http://${IP_address}:80`にアクセスするとgitlabの画面が表示される。  
 rootユーザのパスワードはサーバ内のファイルに記載されているため、以下のコマンドで調べる。
