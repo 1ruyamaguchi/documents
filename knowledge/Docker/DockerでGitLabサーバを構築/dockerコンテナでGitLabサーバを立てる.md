@@ -103,8 +103,7 @@ services:
         external_url "http://${IP_address}:80"
     ports:
     - '80:80'
-    - '8022:22'
-    - '4567:4567'
+    - '2022:22'
     volumes:
     - '/srv/gitlab/config:/etc/gitlab'
     - '/srv/gitlab/logs:/var/log/gitlab'
