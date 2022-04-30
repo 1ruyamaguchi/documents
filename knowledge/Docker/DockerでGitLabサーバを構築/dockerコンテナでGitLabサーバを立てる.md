@@ -96,22 +96,62 @@ version: '3'
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
-    container_name: gitlab-private
+    container_name: gitlab-test
     restart: always
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url "http://${IP_address}:80"
     ports:
-      - '80:80'
-      - '8022:22'
-      - '4567:4567'
+    - '80:80'
+    - '8022:22'
+    - '4567:4567'
     volumes:
-      - '/srv/gitlab/config:/etc/gitlab'
-      - '/srv/gitlab/logs:/var/log/gitlab'
-      - '/srv/gitlab/data:/var/opt/gitlab'
+    - '/srv/gitlab/config:/etc/gitlab'
+    - '/srv/gitlab/logs:/var/log/gitlab'
+    - '/srv/gitlab/data:/var/opt/gitlab'
 ```
 `docker-compose up -d`でコンテナを起動する。アクセスできるようになるまでに数分ラグがある。Error: 502であれば根気良く待つこと。しばらく待って`http://${IP_address}:80`にアクセスするとgitlabの画面が表示される。  
 rootユーザのパスワードはサーバ内のファイルに記載されているため、以下のコマンドで調べる。
 ```
-sudo docker exec -it gitlab-private grep 'Password:' /etc/gitlab/initial_root_password
+sudo docker exec -it gitlab-test grep 'Password:' /etc/gitlab/initial_root_password
 ```
+
+## gitlab-runnerコンテナを構築
+gitlabコンテナ構築時に使用したdocker-compose.ymlに以下を追記する：
+```
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    container_name: gitlab-runner-test
+    restart: always
+    volumes:
+    - '/srv/gitlab/gitlab-runner/config:/etc/gitlab-runner'
+    - '/var/run/docker.sock:/var/run/docker.sock'
+```
+`docker-compose up -d`を実行してコンテナを作成。  
+コンテナ起動後、`docker exec -it gitlab-runner-test /bin/bash`でコンテナの中に入る。`gitlab-runner register`で各種設定を対話形式で進める：  
+```
+Enter the GitLab instance URL (for example, https://gitlab.com/):
+${instance URL}
+Enter the registration token:
+${registration token}
+Enter a description for the runner:
+[0d7a963169c9]: ${description for the runner}
+Enter tags for the runner (comma-separated):
+${tags}
+Registering runner... succeeded                     runner=cgdeSzvu
+Enter an executor: custom, docker-ssh, ssh, docker+machine, docker, parallels, shell, virtualbox, docker-ssh+machine, kubernetes:
+${docker}
+Enter the default Docker image (for example, ruby:2.7):
+${ruby:2.7}
+````
+`${instance URL}`および`${dregistration token}`についてはGitLabのSettings -> CI/CD -> Runnersで設定を確認して入力。  
+リポジトリにて`.gitlab-ci.yml`ファイルを作成、以下テストファイル：
+```
+job1:
+  stage: deploy
+  tags:
+    - ${tags}
+  script:
+    - echo "test"
+```
+pushすればrunnerが走る。
