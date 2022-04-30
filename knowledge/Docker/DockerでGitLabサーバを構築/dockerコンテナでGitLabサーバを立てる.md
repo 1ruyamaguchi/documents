@@ -8,6 +8,9 @@
 
 ### ubuntu側の準備
 
+#### ネットワーク構成
+VirtualBoxの設定にて、「設定」->「ネットワーク」->「割り当て」を「ブリッジアダプター」にする。これで仮想マシンがホストマシンと同一のネットワーク上に存在するように見え、自動的にIPアドレスが割り当てられる。
+
 #### バックスペース効かない問題
 docker-compse.ymlを編集する際にバックスペースが利かずに困ることがあるので、以下の設定が必要。  
 vimのインストール
@@ -27,42 +30,41 @@ vi ~/.vimrc
 
 
 ## Dockerのインストール
+公式ドキュメントに準拠：https://docs.docker.com/engine/install/ubuntu/  
+<br>
 必要なパッケージをインストール
 ```
-apt install \
-apt-transport-https \
-ca-certificates \
-curl \
-gnupg-agent \
-software-properties-common
+sudo apt-get update
+```
+```
+ sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
 ```
 GPG鍵の入手  
 GPG鍵はメールやファイルの暗号化、ファイルの署名に使うらしい。
 ```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key  add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 リポジトリの登録
 ```
-add-apt-repository \
-"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-$(lsb_release -cs) \
-stable"
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
-設定ファイルが作成されたことの確認
+Docker Engine インストール
 ```
-cat /etc/apt/sources.list | grep docker
+sudo apt-get update
 ```
-使用可能なdockerのバージョンを調べる
 ```
-apt-cache madison docker-ce
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
-dockerをインストール
-```
-apt install docker-ce=${インストールするバージョン名}
-```
+
 インストールが成功していることを確認
 ```
-docker --version
+sudo docker --version
 ```
 dockerが起動していることを確認
 ```
@@ -70,9 +72,9 @@ systemctl status docker
 ```
 `active(running)`になっていればOK
 
-### docker-compose インストール
-公式サイトを参考にすればなんとかなる　はず。  
-
+## docker-compose インストール
+公式サイトを参考にすればなんとかなる　はず。https://docs.docker.com/compose/install/  
+<br>
 docker-composeの最新版ダウンロード
 ```
 sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
@@ -81,38 +83,35 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-c
 ```
 sudo chmod +x /usr/local/bin/docker-compose
 ```
+インストールが成功していることを確認
+```
+sudo docker-compose --version
+```
 
-### gitlabコンテナを構築
-ディレクトリ構成は以下
-```
-gitlab
-　├─config
-　├─logs
-　├─data
-　├─registry
-　└─docker-compose.yml
-```
+## gitlabコンテナを構築
+事前に`ip a`コマンドで仮想マシンのIPアドレスを調べておく。  
 docker-compose.ymlを作成
 ```
 version: '3'
 services:
   gitlab:
     image: gitlab/gitlab-ce:latest
-    restart: always
-    hostname: gitlab-private
     container_name: gitlab-private
+    restart: always
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url "http://${SERVER_NAME}"
-        registry_external_url "http://${SERVER_NAME}:4567"
+        external_url "http://${IP_address}:80"
     ports:
       - '80:80'
       - '8022:22'
       - '4567:4567'
     volumes:
-      - './gitlab/config:/etc/gitlab'
-      - './gitlab/logs:/var/log/gitlab'
-      - './gitlab/data:/var/opt/gitlab'
-      - './gitlab/registry:/var/opt/gitlab/gitlab-rails/shared/registry'
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
 ```
-`docker-compose up -d`でコンテナを起動する。アクセスできるようになるまでに数分ラグがあるらしい。しばらく待って`http://localhost:80`にアクセスするとgitlabの画面が表示される。
+`docker-compose up -d`でコンテナを起動する。アクセスできるようになるまでに数分ラグがある。Error: 502であれば根気良く待つこと。しばらく待って`http://${IP_address}:80`にアクセスするとgitlabの画面が表示される。  
+rootユーザのパスワードはサーバ内のファイルに記載されているため、以下のコマンドで調べる。
+```
+sudo docker exec -it gitlab-private grep 'Password:' /etc/gitlab/initial_root_password
+```
