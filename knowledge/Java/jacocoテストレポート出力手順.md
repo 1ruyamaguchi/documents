@@ -53,4 +53,8 @@ Error while creating report: Error while analyzing /Users/nobuhiro/higuchi/GitLa
 ```
 `jacoco-maven-pluginjacoco-maven-plugin`内のversionを最新にすると直る（はず）。
 ## Gradle
-WIP...
+`build.gradle`ファイルの`plugins`ブロック内に
+```
+id 'jacoco'
+```
+を追記する。追記後`./gradlew test jacocoTestReport`コマンドを叩く。うまくいけば`build/reports/jacoco/test/html`内にレポートが作成される。
