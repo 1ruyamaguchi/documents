@@ -3,6 +3,7 @@
 MavenおよびGradleプロジェクトについて記載。
 
 ## Maven
+### 手順
 `pom.xml`の`<plugins>`内に以下を追記する：
 ```
 <plugin>
@@ -45,5 +46,11 @@ MavenおよびGradleプロジェクトについて記載。
 ```
 追記後、`./mvnw test jacoco:report`コマンドを叩く。うまくいけば`target/site/jacoco`内にhtml形式でレポートが作成される。
 
+### ハマったところ
+- 以下のようなエラーが出てBUILD FAILUREする場合：
+```
+Error while creating report: Error while analyzing /Users/nobuhiro/higuchi/GitLab/monitoring/Monitoring/monitoring/target/classes/com/example/monitoring/dto/InputDto.class. Unsupported class file major version
+```
+`jacoco-maven-pluginjacoco-maven-plugin`内のversionを最新にすると直る（はず）。
 ## Gradle
 WIP...
