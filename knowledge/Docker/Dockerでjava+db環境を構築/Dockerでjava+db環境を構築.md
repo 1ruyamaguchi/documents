@@ -110,12 +110,11 @@ source /higuchi/sqls/create_table.sql
 ```
 docker exec -it java-container /bin/bash
 ```
-アプリケーションをビルドする。
+アプリケーションをビルドする（`permission denied`される場合は`chmod +x mvnw`してみる）。
 ```
 cd higuchi/server
 ./mvnw package
 ```
-（`permission denied`される場合は`chmod +x mvnw`してみる。）
 アプリケーションを実行
 ```
 java -jar target/javadbtest-0.0.1-SNAPSHOT.jar
