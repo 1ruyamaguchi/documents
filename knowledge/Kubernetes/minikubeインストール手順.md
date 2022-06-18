@@ -15,7 +15,7 @@ sudo apt install curl
 
 kubectlのダウンロード
 ```
-curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 ```
 
 kubectlバイナリを実行可能にする
