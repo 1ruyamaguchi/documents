@@ -74,7 +74,7 @@ containerd config default | sudo tee /etc/containerd/config.toml
 systemctl restart containerd
 ```
 
-### kubeadm、kubelet、kubectlのインストール
+### kubeadm, kubelet, kubectlのインストール
 cf. https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/_print/#kubeadm-kubelet-kubectlのインストール  
 
 ```
@@ -109,7 +109,7 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 ## ワーカーノード構築
 
 ### kubeXXXインストール
-`コントロールプレーン構築`セクションの`ランタイムのインストール`および`kubeadm、kubelet、kubectlのインストール`と同様の手順を踏む。
+コントロールプレーン構築の[ランタイムのインストール](#ランタイムのインストール)および[kubeadm, kubelet, kubectlのインストール](#kubeadm-kubelet-kubectlのインストール)と同様の手順を踏む。
 
 ### ノードをクラスターに参加させる
 先に控えた`kubeadm join`コマンドを叩く。しばらく経ってから`kubectl get nodes`するとノードのStatusが`Ready`になる。
