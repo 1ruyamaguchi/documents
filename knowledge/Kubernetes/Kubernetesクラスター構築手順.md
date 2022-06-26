@@ -12,11 +12,10 @@ VirtualBox上で仮想マシンを立てて構築。ドキュメントに記載�
 - OS: Ubuntu 20.04.3
 
 ### エラー回避のための設定
-**以下、すべての作業をrootユーザで行う**  
 
 swapの無効化
 ```
-swapoff -a
+sudo swapoff -a
 ```
 
 ## コントロールプレーン構築
@@ -26,52 +25,54 @@ cf. https://kubernetes.io/ja/docs/setup/production-environment/container-runtime
 
 必要な設定の追加
 ```
-cat > /etc/modules-load.d/containerd.conf <<EOF
+cat | sudo tee /etc/modules-load.d/containerd.conf <<EOF
 overlay
 br_netfilter
 EOF
 
-modprobe overlay
-modprobe br_netfilter
+sudo modprobe overlay
+sudo modprobe br_netfilter
 
 # 必要なカーネルパラメータの設定をします。これらの設定値は再起動後も永続化されます。
-cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
+cat | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
 net.bridge.bridge-nf-call-iptables  = 1
 net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 
-sysctl --system
+sudo sysctl --system
 ```
 
 containerdのインストール
 ```
 # HTTPS越しのリポジトリの使用をaptに許可するために、パッケージをインストール
-apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+sudo apt-get update 
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 ```
 ```
 # Docker公式のGPG鍵を追加
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 ```
 # Dockerのaptリポジトリの追加
-add-apt-repository \
+sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) \
     stable"
 ```
 ```
 # containerdのインストール
-apt-get update && apt-get install -y containerd.io
+sudo apt-get update 
+sudo apt-get install -y containerd.io
 ```
 ```
 # containerdの設定
-mkdir -p /etc/containerd
+sudo mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml
 ```
 ```
 # containerdの再起動
-systemctl restart containerd
+sudo systemctl restart containerd
 ```
 
 ### kubeadm, kubelet, kubectlのインストール
@@ -93,15 +94,17 @@ cf. https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/_pr
 
 コントロールプレーンノードの初期化。`kubeadm join`コマンドを控えておく。
 ```
-kubeadm init
+sudo kubeadm init
 ```
 
-初期化完了後、以下のコマンドを叩く。
+一般ユーザでも`kubectl`コマンドを叩けるようにする。
 ```
-export KUBECONFIG=/etc/kubernetes/admin.conf
+mkdir -p $HOME/.kube
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-CNIプラグインを適用する。これが無いとノードのStatusが`NotReady`のまま動かない。
+CNIプラグインを適用する。これが無いと`kubectl get node`で確認した際のノードのStatusが`NotReady`のまま動かない。
 ```
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
