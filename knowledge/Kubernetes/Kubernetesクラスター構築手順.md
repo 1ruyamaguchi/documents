@@ -107,6 +107,7 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 ```
 
 ## ワーカーノード構築
+cf. https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/_print/#join-nodes
 
 ### kubeXXXインストール
 コントロールプレーン構築の[ランタイムのインストール](#ランタイムのインストール)および[kubeadm, kubelet, kubectlのインストール](#kubeadm-kubelet-kubectlのインストール)と同様の手順を踏む。
