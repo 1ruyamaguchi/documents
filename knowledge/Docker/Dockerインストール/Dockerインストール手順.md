@@ -53,7 +53,7 @@ sudo usermod -aG docker $USER
 ```
 グループが存在しない場合は`sudo groupadd docker`で作成する。
 
-マシンの再起動後、`sudo systemctl restart docker`でdockerを再起動する。
+マシンの再起動後、必要であれば`sudo systemctl restart docker`でdockerを再起動する。
 
 ## docker-compose インストール
 公式サイトを参考にすればなんとかなる　はず。https://docs.docker.com/compose/install/  
