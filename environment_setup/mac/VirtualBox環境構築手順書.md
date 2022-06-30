@@ -19,3 +19,7 @@
 
 ## その他
 - ホスト側の操作をしたい場合は「command」キーを押下すればOK
+- ssh接続できるようにすると便利
+```
+sudo apt-get install openssh-server
+```
