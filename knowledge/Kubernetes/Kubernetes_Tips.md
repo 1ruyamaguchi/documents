@@ -1,4 +1,4 @@
-# Kubernetes Tips
+# Kubernetes tips
 Kubernetesを触ってて得られたナレッジを記録していく。使用環境については、[Kubernetesクラスター構築手順](Kubernetesクラスター構築手順.md)を参照。
 
 
