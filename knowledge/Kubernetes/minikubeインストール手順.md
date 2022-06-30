@@ -56,7 +56,7 @@ sudo usermod -aG docker ${userName}
 ```
 グループが存在しない場合は`sudo groupadd docker`で作成する。
 
-マシンの再起動後、`sudo systemctl restart docker`でdockerを再起動する。
+マシンの再起動後、必要であれば`sudo systemctl restart docker`でdockerを再起動する。
 
 ## kubectlのインストール
 公式ドキュメントhttps://kubernetes.io/ja/docs/tasks/tools/install-kubectl/  
