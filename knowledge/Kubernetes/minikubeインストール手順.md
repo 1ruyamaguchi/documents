@@ -52,7 +52,7 @@ systemctl status docker
 
 ユーザをdockerグループに追加
 ```
-sudo usermod -aG docker ${userName}
+sudo usermod -aG docker $USER
 ```
 グループが存在しない場合は`sudo groupadd docker`で作成する。
 
