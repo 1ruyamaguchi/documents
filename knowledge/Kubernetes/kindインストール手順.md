@@ -8,27 +8,7 @@ WIP
   - 空き容量20GB以上
 
 ## インストール手順
-`brew`コマンドを使ってインストールできる。
-
-### Homebrewのインストール
-
-curlをインストール
-```
-sudo apt-get install curl git
-```
-<!-- build-essentialも必要かもしれない -->
-
-Homebrewをインストール
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-パスを通すために、インストール時に出た以下のコマンドを実行
-```
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv"' >> /home/$USER/.profile
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-```
-
+`brew`コマンドを使ってインストールできる。`Docker`および`kubectl`が必要なので併せてインストールする。
 ### Dockerのインストール
 
 必要なパッケージをインストール
@@ -100,6 +80,26 @@ kubectlがインストールされていること、およびバージョンを�
 ```
 kubectl version --client  
 ```
+
+### Homebrewのインストール
+
+curlをインストール
+```
+sudo apt-get install curl git
+```
+<!-- build-essentialも必要かもしれない -->
+
+Homebrewをインストール
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+パスを通すために、インストール時に出た以下のコマンドを実行
+```
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv"' >> /home/$USER/.profile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+```
+
 ### kindのインストール
 
 kindをインストール
