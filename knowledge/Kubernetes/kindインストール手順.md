@@ -82,7 +82,7 @@ kubectl version --client
 
 ### Homebrewのインストール
 
-curlをインストール
+必要なパッケージをインストール
 ```
 sudo apt-get install curl git
 ```
