@@ -84,9 +84,8 @@ kubectl version --client
 
 必要なパッケージをインストール
 ```
-sudo apt-get install curl git
+sudo apt-get install curl git build-essential
 ```
-<!-- build-essentialも必要かもしれない -->
 
 Homebrewをインストール
 ```
