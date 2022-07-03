@@ -128,7 +128,7 @@ kind delete cluster
 
 ```
 # マルチノードクラスタ構築
-kind create cluster first-kind.yml
+kind create cluster --config first-kind.yml
 ```
 以下のyamlに従って、マルチノードのクラスタが立ち上がる。
 ```yaml:first-kind.yml
