@@ -142,8 +142,11 @@ nodes:
 ```
 
 ## サンプル
-nginx起動
+### nginx起動
+
+sample-cluster-1.yml
 ```yaml:sample-cluster-1.yaml
+# クラスタ構築
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
@@ -158,7 +161,9 @@ nodes:
 - role: worker
 - role: worker
 ```
+sample-service-deployment-1.yml
 ```yaml:sample-service-deployment-1.yaml
+# サービスおよびデプロイメント構築
 ---
 apiVersion: apps/v1
 kind: Deployment
