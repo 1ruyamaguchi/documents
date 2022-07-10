@@ -161,6 +161,7 @@ nodes:
 - role: worker
 - role: worker
 ```
+
 sample-service-deployment-1.yml
 ```yaml:sample-service-deployment-1.yaml
 # サービスおよびデプロイメント構築
