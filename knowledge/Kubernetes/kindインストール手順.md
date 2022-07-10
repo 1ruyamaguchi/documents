@@ -169,7 +169,7 @@ sample-service-deployment-1.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order1-deployment
+  name: nginx-deployment
 spec:
   replicas: 3
   selector:
@@ -187,7 +187,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: order2-service
+  name: nginx-service
 spec:
   type: LoadBalancer
   ports:
