@@ -4,6 +4,20 @@
 ### スペック
 - ubuntu: 20.04
 
+### vimのインストール
+docker-compse.ymlを編集する際にバックスペースが利かずに困ることがあるので、以下の設定が必要。
+
+vimのインストール
+```
+sudo apt-get install vim
+```
+
+.vimrcファイルの作成
+```
+vi ~/.vimrc
+```
+ファイル内に`set nocompatible`と記入。
+
 ## Dockerのインストール
 cf. https://docs.docker.com/engine/install/ubuntu/  
 <br>
