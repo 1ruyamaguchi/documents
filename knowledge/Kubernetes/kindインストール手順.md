@@ -141,3 +141,56 @@ nodes:
 - role: worker
 ```
 
+## サンプル
+nginx起動
+```yaml:sample-cluster-1.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+# コントロールプレーン1台
+- role: control-plane
+  extraPortMappings:
+    # ServiceのnodePortとして指定するポート
+  - containerPort: 30080
+    # ホスト側のポートを指定
+    hostPort: 30070
+# ワーカーノード2台
+- role: worker
+- role: worker
+```
+```yaml:sample-service-deployment-1.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order1-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - name: nginx-containers
+        image: nginx:1.16
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order2-service
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "http-port"
+    protocol: "TCP"
+    port: 8080
+    targetPort: 80
+    nodePort: 30080
+  selector:
+    app: sample-app
+```
+`http://${ホスト側のIPアドレス}:30070`にアクセスしてnginxが起動していることを確認できる。
