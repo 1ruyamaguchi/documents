@@ -149,6 +149,7 @@ sudo service postgresql restart
 `psql`コマンドを使えるようにする。
 ```
 sudo apt-get install postgresql-client-common
+sudo apt-get install postgresql-client
 ```
 
 接続
