@@ -32,6 +32,17 @@ sudo apt-get -y install postgresql
 ## 諸設定
 
 ### データベース作成
+
+postgresユーザになる
+```
+sudo su - postgres
+```
+
+postgreSQLに接続
+```
+psql
+```
+
 ```
 CREATE DATABASE nob_db;
 ```
