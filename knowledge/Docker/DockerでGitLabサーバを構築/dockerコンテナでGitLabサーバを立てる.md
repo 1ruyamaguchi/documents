@@ -15,7 +15,7 @@ VirtualBoxの設定にて、「設定」->「ネットワーク」->「割り当
 docker-compse.ymlを編集する際にバックスペースが利かずに困ることがあるので、以下の設定が必要。  
 vimのインストール
 ```
-apt-get install vim
+sudo apt-get install vim
 ```
 .vimrcファイルの作成
 ```
