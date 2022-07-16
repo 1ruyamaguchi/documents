@@ -43,6 +43,7 @@ postgreSQLに接続
 psql
 ```
 
+データベース`nob_db`作成
 ```
 CREATE DATABASE nob_db;
 ```
@@ -59,7 +60,7 @@ sudo -u postgres psql
 SELECT * FROM pg_shadow;
 ```
 
-ユーザ作成
+ユーザ`nob1`作成
 ```
 CREATE USER nob1;
 ```
