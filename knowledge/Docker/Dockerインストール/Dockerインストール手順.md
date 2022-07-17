@@ -5,7 +5,7 @@
 - ubuntu: 20.04
 
 ### vimのインストール
-docker-compse.ymlを編集する際にバックスペースが利かずに困ることがあるので、以下の設定が必要。
+docker-compse.ymlを編集する際に使う。
 
 vimのインストール
 ```

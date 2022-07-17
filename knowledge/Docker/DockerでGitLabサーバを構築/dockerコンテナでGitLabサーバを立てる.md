@@ -11,8 +11,8 @@
 #### ネットワーク構成
 VirtualBoxの設定にて、「設定」->「ネットワーク」->「割り当て」を「ブリッジアダプター」にする。これで仮想マシンがホストマシンと同一のネットワーク上に存在するように見え、自動的にIPアドレスが割り当てられる。
 
-#### バックスペース効かない問題
-docker-compse.ymlを編集する際にバックスペースが利かずに困ることがあるので、以下の設定が必要。  
+#### vimのインストール
+docker-compse.ymlを編集する際に使う。  
 vimのインストール
 ```
 sudo apt-get install vim
@@ -23,70 +23,8 @@ vi ~/.vimrc
 ```
 ファイル内に`set nocompatible`と記入。
 
-#### ウィンドウが拡大できない問題
-仮想マシンのウィンドウを拡大しても表示領域が大きくならないので以下の手順を踏む必要あり。
-- 上部「Devices」から「insert Guest Additions CD image...」を選択
-- インストール完了後再起動
-
-
 ## Dockerのインストール
-公式ドキュメントに準拠：https://docs.docker.com/engine/install/ubuntu/  
-<br>
-必要なパッケージをインストール
-```
-sudo apt-get update
-```
-```
- sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-```
-GPG鍵の入手  
-GPG鍵はメールやファイルの暗号化、ファイルの署名に使うらしい。
-```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-```
-リポジトリの登録
-```
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-Docker Engine インストール
-```
-sudo apt-get update
-```
-```
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-```
-
-インストールが成功していることを確認
-```
-sudo docker --version
-```
-dockerが起動していることを確認
-```
-systemctl status docker
-```
-`active(running)`になっていればOK
-
-## docker-compose インストール
-公式サイトを参考にすればなんとかなる　はず。https://docs.docker.com/compose/install/  
-<br>
-docker-composeの最新版ダウンロード
-```
-sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-```
-バイナリに対して実行権限を付与
-```
-sudo chmod +x /usr/local/bin/docker-compose
-```
-インストールが成功していることを確認
-```
-sudo docker-compose --version
-```
+[Dockerインストール手順](../Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%89%8B%E9%A0%86.md)を参考にDockerをインストールする。
 
 ## gitlabコンテナを構築
 事前に`ip a`コマンドで仮想マシンのIPアドレスを調べておく。  
