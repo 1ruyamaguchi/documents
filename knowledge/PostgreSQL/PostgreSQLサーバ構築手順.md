@@ -1,4 +1,4 @@
-# PostgreSQLインストール手順
+# PostgreSQLサーバ構築手順
 PostgreSQLをインストールして、外部サーバから接続する設定を入れる。
 
 ## スペック
