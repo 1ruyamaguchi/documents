@@ -1,4 +1,4 @@
-# GitLabを外部のPostgreSQLに接続する手順
+# GitLabを外部のPostgreSQLに接続する
 PostgreSQLサーバを外部に立ててGitLabのDBとして運用する。
 
 ## 事前準備
