@@ -44,11 +44,10 @@ ALTER ROLE gitlab WITH SUPERUSER;
 pg_hba.confをvimなどでを編集する。
 ```
 find / -name pg_hba.conf 2> /dev/null
-vim ${path/to/file/pg.hba.conf}
 ```
 ファイルの末尾に以下を追記する。
 ```
-host    all             all             ${address}            trust
+host    all             all             ${Gitlabのaddress}            trust
 ```
 サービスを再起動して変更を適用
 ```
