@@ -25,7 +25,7 @@ sudo apt-get update
 
 PostgreSQLインストール
 ```
-sudo apt-get -y install postgresql
+sudo apt-get install postgresql
 ```
 バージョン指定する際は`postgresql-12`のようにする。
 
