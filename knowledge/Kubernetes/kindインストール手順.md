@@ -10,53 +10,7 @@
 `brew`コマンドを使ってインストールできる。`Docker`および`kubectl`が必要なので併せてインストールする。
 ### Dockerのインストール
 
-必要なパッケージをインストール
-```
-sudo apt-get update
-```
-```
- sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-```
-GPG鍵の入手  
-GPG鍵はメールやファイルの暗号化、ファイルの署名に使うらしい。
-```
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-```
-リポジトリの登録
-```
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-Docker Engine インストール
-```
-sudo apt-get update
-```
-```
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-```
-
-インストールが成功していることを確認
-```
-sudo docker --version
-```
-dockerが起動していることを確認
-```
-systemctl status docker
-```
-`active(running)`になっていればOK
-
-ユーザをdockerグループに追加
-```
-sudo usermod -aG docker $USER
-```
-グループが存在しない場合は`sudo groupadd docker`で作成する。
-
-マシンの再起動後、必要であれば`sudo systemctl restart docker`でdockerを再起動する。
+[Dockerインストール](../Docker/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%89%8B%E9%A0%86.md)
 
 ### kubectlのインストール
 
