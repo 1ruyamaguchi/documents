@@ -10,7 +10,7 @@
 `brew`コマンドを使ってインストールできる。`Docker`および`kubectl`が必要なので併せてインストールする。
 ### Dockerのインストール
 
-[Dockerインストール](../Docker/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%89%8B%E9%A0%86.md)
+[Dockerインストール](../Docker/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%89%8B%E9%A0%86.md)を参考にインストールする。
 
 ### kubectlのインストール
 
