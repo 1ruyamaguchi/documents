@@ -154,3 +154,21 @@ spec:
     app: sample-app
 ```
 `http://${ホスト側のIPアドレス}:30070`にアクセスしてnginxが起動していることを確認できる。
+
+### ボリュームのマウント
+あらかじめ各ワーカーノードにディレクトリ・ファイルを仕込んでおく。
+```
+spec:
+  containers:
+  - name: java-containers
+    image: nob-openjdk17:latest
+    imagePullPolicy: IfNotPresent
+    volumeMounts: 
+    - mountPath: /nob
+      name: java-volume
+  volumes:
+  - name: java-volume
+    hostPath: 
+      path: /nob/server
+```
+上の場合だと、ノード上の`/nob/server`がPodの`/nob`にマウントされる。どのノードのボリュームがマウントされるかはランダムに決まるらしい。
