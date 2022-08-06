@@ -157,7 +157,7 @@ spec:
 
 ### ボリュームのマウント
 あらかじめ各ワーカーノードにディレクトリ・ファイルを仕込んでおく。
-```
+```docker-compose.yml
 spec:
   containers:
   - name: java-containers
