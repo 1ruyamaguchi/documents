@@ -1,4 +1,4 @@
-# サンプル
+# kind tips
 ## nginx起動
 
 sample-cluster-1.yml
