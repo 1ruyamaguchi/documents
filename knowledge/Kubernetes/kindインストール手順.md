@@ -172,3 +172,19 @@ spec:
       path: /nob/server
 ```
 上の場合だと、ノード上の`/nob/server`がPodの`/nob`にマウントされる。どのノードのボリュームがマウントされるかはランダムに決まるらしい。
+
+### ホストマシンのdocker imageをワーカーノードにコピー
+openjdkのPodを立ち上げようとして、`CrashLoopBackOff`でハマった際の対応。  
+cf. https://qiita.com/yokawasa/items/bba45ad775bbf8ac25c3  
+
+ローカルにopenjdkのdocker imageを作成、立ち上がった瞬間落ちないようにするおまじないを追加
+```Dockerfile
+FROM openjdk:17
+
+CMD tail -f /dev/null
+```
+
+各ワーカーノードにdocker imageをロード
+```
+kind load docker-image ${docker image name} --name ${cluster name}
+```
