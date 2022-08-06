@@ -173,7 +173,7 @@ spec:
 ```
 上の場合だと、ノード上の`/nob/server`がPodの`/nob`にマウントされる。どのノードのボリュームがマウントされるかはランダムに決まるらしい。
 
-### ホストマシンのdocker imageをワーカーノードにコピー
+### ホストマシンのdocker imageをワーカーノードにロード
 openjdkのPodを立ち上げようとして、`CrashLoopBackOff`でハマった際の対応。  
 cf. https://qiita.com/yokawasa/items/bba45ad775bbf8ac25c3  
 
