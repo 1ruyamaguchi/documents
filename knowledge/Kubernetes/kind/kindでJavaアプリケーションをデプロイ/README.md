@@ -23,7 +23,12 @@ first-k8s-restapi
 
 #### クラスタ構築
 
-`java-cluster.yml`では、ワーカーノードを2台にすること、service向けのポートを30080にする旨が記載されている。
+`java-cluster.yml`には、
+- ワーカーノードを2台にすること
+- service向けのポートを30080にすること
+- 外部からは30070ポートで通信すること
+
+が記載されている。
 ```java-cluster.yml
 # クラスタ構築
 kind: Cluster
