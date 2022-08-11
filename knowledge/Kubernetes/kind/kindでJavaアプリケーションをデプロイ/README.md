@@ -52,6 +52,7 @@ kind create cluster --config java-cluster.yml --name java-cluster
 - ログ格納用のディレクトリを作成すること
 - jarファイルをコピーしておくこと
 - 起動した瞬間に死なないこと
+
 が記載されている。
 ```Dockerfile
 FROM openjdk:17
