@@ -128,4 +128,4 @@ kubectl apply -f java-service.yml
 ```
 
 #### 動作確認
-`curl http://${kindサーバのIPアドレス}:30070/k8s/date`で本日日時が返って来れば正常動作している。`k8s/date`はjava側の設定になるので、変える場合はソースファイルの変更、jarの再作成、imageの再作成が必要になる。
+各Podでjavaアプリケーションを起動して（**要改善！！！**）、`curl http://${kindサーバのIPアドレス}:30070/k8s/date`で本日日時が返って来れば正常動作している。`k8s/date`はjava側の設定になるので、変える場合はソースファイルの変更、jarの再作成、imageの再作成が必要になる。
