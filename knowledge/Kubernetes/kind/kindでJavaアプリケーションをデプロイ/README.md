@@ -67,7 +67,7 @@ CMD tail -f /dev/null
 
 `first-k8s-restapi/docker`にてdockerイメージを作成する。`-t`オプションで名前をつけておく。
 ```
-docker bulid ./ -t nob-openjdk17
+docker build ./ -t nob-openjdk17
 ```
 
 各ワーカーノードにdockerイメージをロードする。これを忘れるとデプロイメント起動時にPodがimageを取得できずに`CrashLoopBackOff`し続ける。
