@@ -70,7 +70,7 @@ CMD tail -f /dev/null
 docker bulid ./ -t nob-openjdk17
 ```
 
-各ワーカーノードにdockerイメージをロードする。これを忘れるとデプロイメント起動時にPodがimageを取得できずに`ClashRoopBackOff`し続ける。
+各ワーカーノードにdockerイメージをロードする。これを忘れるとデプロイメント起動時にPodがimageを取得できずに`CrashLoopBackOff`し続ける。
 ```
 kind load docker-image nob-openjdk17 --name java-cluster
 ```
