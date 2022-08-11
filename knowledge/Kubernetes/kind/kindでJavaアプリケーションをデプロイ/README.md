@@ -106,7 +106,7 @@ kubectl apply -f java-deployment.yml
 ```
 
 #### サービス起動
-外部から通信できるようにする。
+`java-service.yml`によって外部から通信できるようにする。
 ```java-service.yml
 apiVersion: v1
 kind: Service
