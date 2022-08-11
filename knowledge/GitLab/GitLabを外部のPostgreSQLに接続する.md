@@ -3,7 +3,7 @@ PostgreSQLサーバを外部に立ててGitLabのDBとして運用する。
 
 ## 事前準備
 - GitLabサーバを立てる
-  - [DockerでGitLabサーバを立てる](../Docker/Docker%E3%81%A7GitLab%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E6%A7%8B%E7%AF%89/docker%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%81%A7GitLab%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E7%AB%8B%E3%81%A6%E3%82%8B.md)
+  - [DockerでGitLabサーバを構築](../Docker/Docker%E3%81%A7GitLab%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E6%A7%8B%E7%AF%89/README.md)
   - [GitLabサーバ構築手順書（パッケージ版）](./GitLab%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89%E6%89%8B%E9%A0%86%E6%9B%B8%EF%BC%88%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E7%89%88%EF%BC%89.md)
 - PostgreSQLサーバを立てる
   - [PostgreSQLサーバ構築手順](../PostgreSQL/PostgreSQL%E3%82%B5%E3%83%BC%E3%83%90%E6%A7%8B%E7%AF%89%E6%89%8B%E9%A0%86.md)

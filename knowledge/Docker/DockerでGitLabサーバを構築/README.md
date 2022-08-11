@@ -24,7 +24,7 @@ vi ~/.vimrc
 ファイル内に`set nocompatible`と記入。
 
 ## Dockerのインストール
-[Dockerインストール手順](../Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%89%8B%E9%A0%86.md)を参考にDockerをインストールする。
+[Dockerインストール手順](../Docker%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/README.md)を参考にDockerをインストールする。
 
 ## gitlabコンテナを構築
 事前に`ip a`コマンドで仮想マシンのIPアドレスを調べておく。  
