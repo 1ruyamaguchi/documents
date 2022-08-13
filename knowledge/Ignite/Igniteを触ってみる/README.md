@@ -19,6 +19,25 @@ java -version
 sudo apt install openjdk-17-jre-headless
 ```
 
+環境変数`JAVA_HOME`を設定する。
+```
+# java_home.shを作成する
+sudo vi /etc/profile.d/java_home.sh
+```
+
+`java_home.sh`に以下の内容を記載する。
+```
+export JAVA_HOME=`echo $(dirname $(readlink $(readlink $(which java)))) | sed -e 's/\/bin$//g' | sed -e 's/\/jre$//g'`
+```
+
+```
+# JAVA_HOME反映
+source /etc/profile.d/java_home.sh
+
+# 確認
+echo $JAVA_HOME
+```
+
 ## Igniteのインストール
 
 [公式サイト](https://ignite.apache.org/download.cgi)からzipファイルをダウンロードする。Binary Releasesを選択する。その後、zipファイルを`/opt`配下に展開する。
