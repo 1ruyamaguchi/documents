@@ -1,5 +1,6 @@
 # WIP: Igniteを触ってみる
-触ってみます。Javaアプリケーションで、Igniteをキャッシュサーバとして使ってみます。
+触ってみます。Javaアプリケーションで、Igniteをキャッシュサーバとして使ってみます。  
+cf: https://qiita.com/mkyz08/items/81a526827a573ea17805
 
 ## openjdkのインストール
 
