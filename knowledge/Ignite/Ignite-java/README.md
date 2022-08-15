@@ -19,3 +19,6 @@ java \
 --add-opens java.base/java.nio=ALL-UNNAMED \
 -jar firstignite-0.0.1-SNAPSHOT.jar
 ```
+
+h2の依存関係追加してみたりした  
+https://jar-download.com/artifacts/com.h2database/h2/1.3.158/source-code/org/h2/index/BaseIndex.java
