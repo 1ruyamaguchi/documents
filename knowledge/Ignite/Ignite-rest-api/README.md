@@ -8,10 +8,10 @@ cf: https://ignite.apache.org/docs/latest/quick-start/restapi
 
 [公式サイト](https://ignite.apache.org/docs/latest/setup#enabling-modules)を参考に、`libs/optional`配下にある`ignite-rest-http`を`libs`に移動する
 ```
-cp ignite-rest-http ..
+sudo cp -r ignite-rest-http/ ..
 ```
 
 Ignite起動
 ```
-./ignite.sh ../examples/config/example-ignite.xml
+sudo ./ignite.sh ../examples/config/example-ignite.xml
 ```
