@@ -56,7 +56,6 @@ kind create cluster --config java-cluster.yml --name java-cluster
 `Dockerfile`では、openjdk17をベースとして、
 - ログ格納用のディレクトリを作成すること
 - jarファイルをコピーしておくこと
-- 起動した瞬間に死なないこと
 - Pod作成時にjavaアプリケーションを起動すること
 
 が記載されている。
@@ -68,7 +67,6 @@ RUN mkdir /nob/server/log
 
 COPY ./jar/app-0.0.1-SNAPSHOT.jar /nob/server/jar
 
-CMD tail -f /dev/null
 CMD java -jar /nob/server/jar/app-0.0.1-SNAPSHOT.jar
 ```
 
