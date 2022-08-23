@@ -20,7 +20,7 @@ first-k8s-restapi
 ```
 
 ### dockerイメージ作成
-あらかじめdockerイメージを作成して、docker hubに登録しておく。以下の内容でDockerfileを作成する。
+あらかじめdockerイメージを作成して、docker hubに登録しておく必要があるため、以下の内容でDockerfileを作成する。
 ```Dockerfile
 FROM openjdk:17
 
