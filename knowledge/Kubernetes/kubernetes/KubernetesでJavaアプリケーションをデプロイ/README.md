@@ -19,8 +19,8 @@ first-k8s-restapi
         └─java-service.yml  
 ```
 
-#### dockerイメージ作成
-あらかじめdockerイメージを作成して、docker hubに登録しておく。以下の内容でDockerfileを作成する。
+### dockerイメージ作成
+あらかじめdockerイメージを作成して、docker hubに登録しておく必要があるため、以下の内容でDockerfileを作成する。
 ```Dockerfile
 FROM openjdk:17
 
@@ -54,7 +54,7 @@ docker hubにイメージをpushする。
 docker image push 1ruyamaguchi/kube-restapi:latest
 ```
 
-#### デプロイメント起動
+### デプロイメント起動
 `java-deployment.yml`でPodに関する設定を記載する。`containers`配下にて、`1ruyamaguchi/kube-restapi`をpullして使うことを宣言している。
 ```java-deployment.yml
 apiVersion: apps/v1
@@ -84,7 +84,7 @@ spec:
 kubectl apply -f java-deployment.yml
 ```
 
-#### サービス起動
+### サービス起動
 `java-service.yml`によって外部から通信できるようにする。
 ```java-service.yml
 apiVersion: v1
@@ -107,5 +107,5 @@ spec:
 kubectl apply -f java-service.yml
 ```
 
-#### 動作確認
+### 動作確認
 `curl http://${コントロールプレーンのIPアドレス}:30080/k8s/date`で本日日時が返って来れば正常動作している。`k8s/date`はjava側の設定になるので、変える場合はソースファイルの変更、jarの再作成、imageの再作成が必要になる。
