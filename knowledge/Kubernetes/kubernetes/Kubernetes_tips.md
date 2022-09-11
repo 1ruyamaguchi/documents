@@ -19,3 +19,45 @@ sudo swapoff -a
 ```
 systemctl restart kubelet
 ```
+
+### metrics-server インストール方法
+`kubectl top nodes`でリソースの使用状況を確認するために、metrics-serverをインストールする必要がある。  
+cf: https://kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/#metrics-server  
+<br>
+インストール
+```
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+
+ログを確認。多分動いていない。
+```
+kubectl logs -n kube-system -l k8s-app=metrics-server --container metrics-server
+```
+
+deploymentを編集
+```
+kubectl edit deploy metrics-server -n kube-system
+```
+```deployment.yaml
+spec:
+  containers:
+  - args:
+    - --cert-dir=/tmp
+    - --secure-port=4443
+-    - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
++    - --kubelet-preferred-address-types=InternalIP
++    - --kubelet-insecure-tls
+    - --kubelet-use-node-status-port
+    - --metric-resolution=15s
+```
+
+しばらくしてからpodを確認すると、動いているはず。
+```
+kubectl get pods -n kube-system
+```
+```
+nob@kind:~/kind$ kubectl get pods -n kube-system
+NAME                                                  READY   STATUS    RESTARTS   AGE
+省略
+metrics-server-98c4f9f68-9fnlj                        1/1     Running   0          13m
+```
