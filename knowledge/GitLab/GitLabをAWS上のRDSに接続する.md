@@ -32,13 +32,13 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm;
 CREATE EXTENSION IF NOT EXISTS btree_gist;
 
 # マスタユーザをgitlabのメンバにする
-GRANT gitlab TO postgres
+GRANT gitlab TO postgres;
 
 # データベースの作成
 CREATE DATABASE gitlabhq_production OWNER gitlab;
 
 # gitlabユーザにスーパーユーザの権限を付与
-GRANT rds_superuser TO new_master;
+GRANT rds_superuser TO gitlab;
 ```
 
 ## GitLabの設定
