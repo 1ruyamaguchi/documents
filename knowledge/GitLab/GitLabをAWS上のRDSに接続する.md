@@ -11,6 +11,8 @@ sudo apt-get install postgresql-client-common
 sudo apt-get install postgresql-client
 ```
 
+以下、PostgreSQLサーバに設定を入れていく。  
+https://docs.gitlab.com/ee/administration/postgresql/external.html  
 AWSコンソール上に表示されるDBのエンドポイントを控えておき、デフォルトで用意されている`postgres`ユーザを使ってPostgreSQLに接続する。
 ```
 psql \
