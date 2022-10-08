@@ -10,6 +10,9 @@ https://jdk.java.net
 にコピー  
   - settings.jsonにパスを通す。  
   `/usr/libexec/java_home`で出てきたパスを使って`"java.home": "path/to/jdk"`を記載する（/Contents/Homeは不要？）
+  
+### JAVA_HOME設定
+https://amateur-engineer.com/mac-java-version/
 
 ### VSCodeの拡張機能インストール
 インストールしたもの一覧：  
