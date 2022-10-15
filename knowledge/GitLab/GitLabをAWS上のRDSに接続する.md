@@ -47,7 +47,7 @@ psql \
   --host=${PostgreSQLのエンドポイント} \ 
   --port=5432 \
   --username=gitlab \
-  --dbname=itlabhq_production \
+  --dbname=gitlabhq_production \
   --password
 ```
 
