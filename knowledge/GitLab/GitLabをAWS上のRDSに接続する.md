@@ -16,10 +16,10 @@ https://docs.gitlab.com/ee/administration/postgresql/external.html
 AWSコンソール上に表示されるDBのエンドポイントを控えておき、デフォルトで用意されている`postgres`ユーザを使ってPostgreSQLに接続する。
 ```
 psql \
-   --host=${PostgreSQLのエンドポイント} \
-   --port=5432 \
-   --username=postgres \
-   --password \
+  --host=${PostgreSQLのエンドポイント} \
+  --port=5432 \
+  --username=postgres \
+  --password
 ```
 
 以下のように、PostgreSQL上の操作でGitLab用のユーザおよびデータベースを用意する。
@@ -39,6 +39,16 @@ CREATE DATABASE gitlabhq_production OWNER gitlab;
 
 # gitlabユーザにスーパーユーザの権限を付与
 GRANT rds_superuser TO gitlab;
+```
+
+以降は、以下のコマンドで直接GitLab用のデータベースに接続できる。
+```
+psql \
+  --host=${PostgreSQLのエンドポイント} \ 
+  --port=5432 \
+  --username=gitlab \
+  --dbname=itlabhq_production \
+  --password
 ```
 
 ## GitLabの設定
