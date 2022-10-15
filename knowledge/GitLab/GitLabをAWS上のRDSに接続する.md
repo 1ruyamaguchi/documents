@@ -44,7 +44,7 @@ GRANT rds_superuser TO gitlab;
 以降は、以下のコマンドで直接GitLab用のデータベースに接続できる。
 ```
 psql \
-  --host=${PostgreSQLのエンドポイント} \ 
+  --host=${PostgreSQLのエンドポイント} \
   --port=5432 \
   --username=gitlab \
   --dbname=gitlabhq_production \
