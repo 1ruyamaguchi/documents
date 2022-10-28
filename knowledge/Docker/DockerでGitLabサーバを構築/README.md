@@ -92,3 +92,10 @@ job1:
     - echo "test"
 ```
 pushすればrunnerが走る。
+
+ジョブを走らせている際に「名前解決ができない」のようなメッセージが出て落ちる場合は、runnerのコンテナ内の`/etc/gitlab-runner/config.toml`に下記を追加する。
+```
+  [runners.docker]
+  ...
+    extra_hosts = ["${ドメイン名}:${ホストOSのIPアドレス}"]    
+```
