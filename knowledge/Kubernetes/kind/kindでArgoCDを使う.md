@@ -73,10 +73,10 @@ GUIにて「+ New APP」を押下して、以下を入力する。
 
 アプリケーションが作成されていることを確認する。
 ```
-argocd app get guestbook
+argocd app get ${Application Name}
 ```
 
 アプリケーションをデプロイする。
 ```
-argocd app sync guestbook
+argocd app sync ${Application Name}
 ```
