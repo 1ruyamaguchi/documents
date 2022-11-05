@@ -39,7 +39,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort", "por
 
 Argo CD CLIをインストールする。
 ```
-curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+curl -SL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 rm argocd-linux-amd64
 ```
