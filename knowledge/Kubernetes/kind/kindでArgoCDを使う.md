@@ -62,3 +62,21 @@ argocd account update-password
 `http://${ホストサーバのIPアドレス}:30070`にアクセスすればGUIでログインができる。
 
 ## アプリケーションのデプロイ
+GUIにて「+ New APP」を押下して、以下を入力する。
+- Application Name: 任意のアプリ名
+- Project: "default"
+- Repository URL: GitHubなどのURL（例: https://github.com/1ruyamaguchi/argocd-first-kube-deploy.git）
+- Revision: "HEAD"
+- Path: デプロイに使うファイルのパス
+- Cluster: "https://kubernetes.default.svc"
+- Namespace: "default"
+
+アプリケーションが作成されていることを確認する。
+```
+argocd app get guestbook
+```
+
+アプリケーションをデプロイする。
+```
+argocd app sync guestbook
+```
