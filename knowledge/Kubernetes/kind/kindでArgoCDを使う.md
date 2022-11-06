@@ -64,6 +64,44 @@ argocd account update-password
 `http://${ホストサーバのIPアドレス}:30070`にアクセスすればGUIでログインができる。
 
 ## アプリケーションのデプロイ
+事前に別途リポジトリを用意し、例えば以下のようなDeploymentおよびServiceの各種マニフェストファイルを格納しておく。
+```first-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: first-deployment
+spec: 
+  selector: 
+    matchLabels: 
+      app: first-nginx
+  replicas: 3
+  template: 
+    metadata: 
+      labels: 
+        app: first-nginx
+    spec: 
+      containers: 
+      - name: first-nginx
+        image: nginx:1.18
+        ports: 
+        - containerPort: 80
+```
+```first-service.yaml
+apiVersion: v1
+kind: Service
+metadata: 
+  name: first-service
+spec: 
+  type: NodePort
+  ports: 
+  - port: 8099
+    targetPort: 80
+    protocol: TCP
+    nodePort: 30090
+  selector: 
+    app: first-nginx
+```
+
 GUIにて「+ NEW APP」を押下して、以下を入力する。
 - Application Name: 任意のアプリ名
 - Project: "default"
