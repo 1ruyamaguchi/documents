@@ -210,6 +210,9 @@ nob@kind:~$ docker image ls | grep first-java-app
 first-java-app   2         83bba441f58a   19 minutes ago   492MB
 first-java-app   1         29fb89005ccf   22 minutes ago   492MB
 
+
+
+
 nob@kind:~/kind/cluster$ kind create cluster --name first-java-cluster --config first-java-cluster.yaml 
 Creating cluster "first-java-cluster" ...
  ✓ Ensuring node image (kindest/node:v1.24.0) 🖼 
@@ -225,3 +228,21 @@ You can now use your cluster with:
 kubectl cluster-info --context kind-first-java-cluster
 
 Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
+
+
+
+
+nob@kind:~$ kubectl get nodes
+NAME                               STATUS   ROLES           AGE   VERSION
+first-java-cluster-control-plane   Ready    control-plane   77s   v1.24.0
+first-java-cluster-worker          Ready    <none>          42s   v1.24.0
+first-java-cluster-worker2         Ready    <none>          43s   v1.24.0
+
+
+
+
+
+
+
+NobuhironoMacBook-Air:~ nobuhiro$ curl http://kind:30071/argo/greet
+Hello, Argo CD! 
