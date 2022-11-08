@@ -1,0 +1,213 @@
+SSOT (信頼できる唯一の情報源) の概念が重要視される昨今、環境の構成をどこで、どのように管理するかが大きな課題となっています。
+今回は kind とArgo CD を用いて、Git の情報を真として Kubernetes 上にアプリケーションが自動デプロイされ、管理される様子を体験します。 
+
+概要
+kind を用いて疑似 Kubernetes クラスタを作成します。さらにそのクラスタ上に Argo CD を構築します。
+Argo CD はGit のリポジトリ上にあるKubernetes のマニフェストファイルを監視し、自動デプロイを行います。
+
+なんかよさげな図をここに描く
+
+マシンの準備
+以下をインストールしておく。
+
+docker (cf. https://docs.docker.com/engine/install/)
+kind (cf. https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+kubectl (cf. https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/)
+ディレクトリ構成
+first-java-deploy
+ ├─docker
+ │  └─image
+ │     ├─first-java-app_1.tar  #container imageを固めたもの
+ │     └─first-java-app_2.tar
+ └─kind
+    └─cluster
+       └─first-java-cluster.yaml  #クラスタ起動用のyaml
+Java アプリケーションの準備
+Kubernetes 環境に乗せる、固定メッセージを返すだけの簡単なアプリケーションを作成します。メッセージを変えて、バージョン1と2を用意します。
+
+ソース
+インターフェース（バージョン1, 2共通）
+
+SampleService.java ソースを折りたたむ
+package com.example.kuberestapi.service;
+ 
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+ 
+/**
+ * テスト用のサービスインターフェースです。
+ *
+ */
+@Service
+@RestController
+@RequestMapping("/kind")
+public interface SampleService {
+ 
+    /**
+     * 固定メッセージを返すメソッドです。
+     *
+     * @return
+     */
+    @RequestMapping(value = "/greet", method = RequestMethod.GET)
+    String getMessage();
+}
+実装クラス（バージョン1）"Hello, Argo CD!" が返るようにしています。
+
+SampleServiceImpl.java ソースを折りたたむ
+package com.example.kuberestapi.service.impl;
+ 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+ 
+import com.example.kuberestapi.service.SampleService;
+ 
+/**
+ * テスト用のサービス実装クラスです。
+ *
+ */
+@Service
+public class SampleServiceImpl implements SampleService {
+ 
+    @Override
+    public String getMessage() {
+ 
+        String retMessage = "Hello, Argo CD!";
+ 
+        Logger logger = LoggerFactory.getLogger(SampleServiceImpl.class);
+        logger.info("Create the message {}", retMessage);
+ 
+        return retMessage;
+    }
+}
+実装クラス（バージョン2）"Good bye, Argo CD!" が返るようにしています。
+
+SampleServiceImpl.java ソースを折りたたむ
+package com.example.kuberestapi.service.impl;
+ 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+ 
+import com.example.kuberestapi.service.SampleService;
+ 
+/**
+ * テスト用のサービス実装クラスです。
+ *
+ */
+@Service
+public class SampleServiceImpl implements SampleService {
+ 
+    @Override
+    public String getMessage() {
+ 
+        String retMessage = "Good bye, Argo CD!";
+ 
+        Logger logger = LoggerFactory.getLogger(SampleServiceImpl.class);
+        logger.info("Create the message {}", retMessage);
+ 
+        return retMessage;
+    }
+}
+container image の作成
+アプリの container image をローカルで作成し、tar で固めてサーバ側で展開します。
+
+docker load < first-java-app_1.tar
+docker load < first-java-app_2.tar
+$ docker image ls | grep first-java-app
+Kubernetes クラスタの準備
+クラスタの起動
+以下の yaml を用いてクラスタを起動します。
+
+first-java-cluster.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 30080
+    hostPort: 30070
+    protocol: TCP
+  - containerPort: 30090
+    hostPort: 30071
+    protocol: TCP
+- role: worker
+- role: worker
+クラスタ外向けに開けているポートについて、以下を想定しています。
+
+30070: Argo CD にログインする
+30071: Java アプリのAPIを叩く
+container image の読み込み
+クラスタ内に container image をロードします。
+
+kind load docker-image first-java-app:1 --name first-java-cluster
+kind load docker-image first-java-app:2 --name first-java-cluster
+マニフェストを管理するリポジトリの準備
+別途 GitLab サーバを立てて、各種マニフェストファイルを管理します。
+
+プロジェクト構成
+first-java-app-project
+ └─k8s
+    ├─first-java-deployment.yaml
+    └─first-java-service.yaml
+各種マニフェスト
+first-java-deployment.yaml は container image からアプリのコンテナを作成し、死活監視をします。
+
+first-java-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: first-java-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: first-java-app
+  template:
+    metadata:
+      labels:
+        app: first-java-app
+    spec:
+      containers:
+      - name: first-java
+        image: first-java-app:1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+first-java-service.yaml は クラスタ内外の通信を管理します。
+
+first-java-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: first-java-service
+spec:
+  type: NodePort
+  ports:
+  - name: "java-port"
+    port: 8099
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30090
+  selector:
+    app: first-java-app
+Argo CD を使ってみる
+Argo CD の起動
+アプリケーションのデプロイ
+アプリケーションのバージョンアップ/切り戻し
+余談
+container image の管理方法について
+アプリの container image について、今回は簡単のために事前に作った image を tar で固めてクラスタ内に持ち込みましたが、実際は Amazon ECR などを使って管理されることが多いです。
+
+マニフェストファイルの管理方法について
+今回は GitLab サーバを立てましたが、GitHub でも同様にマニフェストを管理して Argo CD と連携させることができます。自分たちで管理するサーバが減るので、こちらの方が手軽かもしれません。
+
+いいね!これに いいね! をつける
+ラベルがありませんラベルの編集
+ユーザー アイコン: higuchi-nob@iij.ad.jp
+コメントを書く…
+Confluenceについてのお問い合わせIIJグループ 情報共有ポリシー
+アトラシアンConfluenceが提供7.4.17 バグ報告 Atlassian ニュース
+Atlassian
