@@ -204,10 +204,8 @@ container image の管理方法について
 マニフェストファイルの管理方法について
 今回は GitLab サーバを立てましたが、GitHub でも同様にマニフェストを管理して Argo CD と連携させることができます。自分たちで管理するサーバが減るので、こちらの方が手軽かもしれません。
 
-いいね!これに いいね! をつける
-ラベルがありませんラベルの編集
-ユーザー アイコン: higuchi-nob@iij.ad.jp
-コメントを書く…
-Confluenceについてのお問い合わせIIJグループ 情報共有ポリシー
-アトラシアンConfluenceが提供7.4.17 バグ報告 Atlassian ニュース
-Atlassian
+---
+
+nob@kind:~$ docker image ls | grep first-java-app
+first-java-app   2         83bba441f58a   19 minutes ago   492MB
+first-java-app   1         29fb89005ccf   22 minutes ago   492MB
