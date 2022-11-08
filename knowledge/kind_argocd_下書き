@@ -209,3 +209,19 @@ container image の管理方法について
 nob@kind:~$ docker image ls | grep first-java-app
 first-java-app   2         83bba441f58a   19 minutes ago   492MB
 first-java-app   1         29fb89005ccf   22 minutes ago   492MB
+
+nob@kind:~/kind/cluster$ kind create cluster --name first-java-cluster --config first-java-cluster.yaml 
+Creating cluster "first-java-cluster" ...
+ ✓ Ensuring node image (kindest/node:v1.24.0) 🖼 
+ ✓ Preparing nodes 📦 📦 📦  
+ ✓ Writing configuration 📜 
+ ✓ Starting control-plane 🕹️ 
+ ✓ Installing CNI 🔌 
+ ✓ Installing StorageClass 💾 
+ ✓ Joining worker nodes 🚜 
+Set kubectl context to "kind-first-java-cluster"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-first-java-cluster
+
+Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
