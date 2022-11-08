@@ -246,3 +246,9 @@ first-java-cluster-worker2         Ready    <none>          43s   v1.24.0
 
 NobuhironoMacBook-Air:~ nobuhiro$ curl http://kind:30071/argo/greet
 Hello, Argo CD! 
+
+
+
+
+NobuhironoMacBook-Air:~ nobuhiro$ curl http://kind:30071/argo/greet
+Good bye, Argo CD! 
