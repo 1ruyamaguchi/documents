@@ -99,4 +99,4 @@ pushすればrunnerが走る。
   ...
     extra_hosts = ["${ドメイン名}:${ホストOSのIPアドレス}"]    
 ```
-`apt-get update` `apt-get install vi`でviとかを入れておく必要があるので注意。
+`apt-get update` `apt-get install vim`でvimとかを入れておく必要があるので注意。
