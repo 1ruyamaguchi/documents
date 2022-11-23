@@ -43,10 +43,10 @@ CMD java -jar ${JAR_FILE_PATH}/${JAR_FILE}
 イメージ名は`${userName}/${repositoryName}`にする必要がある。以下のシェルを叩けばイメージが作成できる。
 ```docker-build.sh
 USER_NAME="1ruyamaguchi"
-IMAGE_NAME="kube-restapi"
+REPOSITORY_NAME="kube-restapi"
 
 # イメージをビルド
-docker build -t ${USER_NAME}/${IMAGE_NAME} .
+docker build -t ${USER_NAME}/${REPOSITORY_NAME} .
 ```
 
 docker hubにイメージをpushする。
