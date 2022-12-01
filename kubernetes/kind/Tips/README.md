@@ -1,4 +1,4 @@
-# kind tips
+# kind Tips
 ## nginx起動
 
 sample-cluster-1.yml
