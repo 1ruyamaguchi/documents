@@ -36,17 +36,17 @@ deploymentを編集
 ```
 kubectl edit deploy metrics-server -n kube-system
 ```
-```deployment.yaml
-spec:
-  containers:
-  - args:
-    - --cert-dir=/tmp
-    - --secure-port=4443
+```diff
+ spec:
+   containers:
+   - args:
+     - --cert-dir=/tmp
+     - --secure-port=4443
 -    - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
 +    - --kubelet-preferred-address-types=InternalIP
 +    - --kubelet-insecure-tls
-    - --kubelet-use-node-status-port
-    - --metric-resolution=15s
+     - --kubelet-use-node-status-port
+     - --metric-resolution=15s
 ```
 
 しばらくしてからpodを確認すると、動いているはず。
